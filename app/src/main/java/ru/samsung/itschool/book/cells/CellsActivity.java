@@ -2,6 +2,8 @@ package ru.samsung.itschool.book.cells;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -18,8 +20,8 @@ import task.Task;
 public class CellsActivity extends Activity implements OnClickListener,
         OnLongClickListener {
 
-    private int WIDTH = 10;
-    private int HEIGHT = 10;
+    private int WIDTH = 6;
+    private int HEIGHT = 6;
 
     private Button[][] cells;
 
@@ -36,36 +38,53 @@ public class CellsActivity extends Activity implements OnClickListener,
     void generate() {
 
         //Эту строку нужно удалить
-        Task.showMessage(this, "Добавьте код в функцию активности generate() для генерации клеточного поля");
+        //Task.showMessage(this, "Добавьте код в функцию активности generate() для генерации клеточного поля");
 
 
         for (int i = 0; i < HEIGHT; i++)
-            for (int j = 0; j < WIDTH; j++) {
-                //ADD YOUR CODE HERE
-                //....
-
-            }
+            for (int j = 0; j < WIDTH; j++)
+                if (Math.random() >= 0.5)
+                {
+                    cells[i][j].setBackgroundColor(Color.RED);
+                }
     }
 
     @Override
     public boolean onLongClick(View v) {
         //Эту строку нужно удалить
-        Stub.show(this, "Добавьте код в функцию активности onLongClick() - реакцию на долгое нажатие на клетку");
+        //Stub.show(this, "Добавьте код в функцию активности onLongClick() - реакцию на долгое нажатие на клетку");
         return false;
     }
 
     @Override
     public void onClick(View v) {
         //Эту строку нужно удалить
-        Stub.show(this, "Добавьте код в функцию активности onClick() - реакцию на нажатие на клетку");
+        //Stub.show(this, "Добавьте код в функцию активности onClick() - реакцию на нажатие на клетку");
 
         Button tappedCell = (Button) v;
 
-        //Получаем координтаты нажатой клетки
         int tappedX = getX(tappedCell);
         int tappedY = getY(tappedCell);
-        //ADD YOUR CODE HERE
-        //....
+
+
+
+        for (int x = 0; x < WIDTH; x++)
+        {
+            if (((ColorDrawable)cells[tappedY][x].getBackground()).getColor() == -1)
+                cells[tappedY][x].setBackgroundColor(Color.RED);
+            else
+                cells[tappedY][x].setBackgroundColor(Color.WHITE);
+        }
+        for (int y = 0; y < WIDTH; y++)
+        {
+            if(y==tappedY) continue;
+            if (((ColorDrawable)cells[y][tappedX].getBackground()).getColor() == -1)
+                cells[y][tappedX].setBackgroundColor(Color.RED);
+            else
+                cells[y][tappedX].setBackgroundColor(Color.WHITE);
+        }
+
+
 
     }
 

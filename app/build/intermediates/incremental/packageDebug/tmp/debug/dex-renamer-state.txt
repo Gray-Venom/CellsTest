@@ -1,0 +1,4 @@
+#Thu Nov 12 18:06:42 MSK 2020
+base.0=/home/gray/AndroidStudioProjects/Cells/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
